@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>[I, Get Data] GOOD Weather</title>
+	<title>[II, Dynamic Display] GOOD Weather</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,28 +14,33 @@
 
 	<script type="text/javascript">
 
-	// Get Weather	
+			// Get Weather	
 		function loadWeather(){
- 
+
 			var forecastURL = "https://api.forecast.io/forecast/e79ce4f49850f7741774f156ee9198bc/34.101422,-118.341224";
- 
+
 			$.ajax({
 			    url: forecastURL,
 			    jsonpCallback: 'jsonCallback',
 			    contentType: "application/json",
 			    dataType: 'jsonp',
 			    success: function(json) {
-			       
-			       console.log(json);
- 
+			      
+			      // Returned Data 
+			      console.log(json);
+			      
+			      // Display Data Dynamically
+			      $("#current_temp").html(Math.round(json.currently.temperature)+"&#176;F");
+			      $("#current_summary").html(json.currently.summary);
+			      $("#ozone").html(json.currently.ozone);
 			    },
 			    error: function(e) {
 			       console.log(e.message);
 			    }
 			});
- 
+
 		}
- 
+
 		
 		// On Page Load
 		$(document).ready(function(){
@@ -71,6 +76,7 @@
 		<h1 id="current_temp" class="icon" data-icon="B">65&#176;F</h1>
 		<p id="current_summary">Partly Cloudy</p>
 		<p id="location">Current Location</p> 
+		<p id="ozone">ozone</p>
 	</div>
 </div>
  
