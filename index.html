@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>GOOD Weather</title>
+	<title>[I, Get Data] GOOD Weather</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,33 @@
 
 	<script type="text/javascript">
 
-
+	// Get Weather	
+		function loadWeather(){
+ 
+			var forecastURL = "https://api.forecast.io/forecast/e79ce4f49850f7741774f156ee9198bc/34.101422,-118.341224";
+ 
+			$.ajax({
+			    url: forecastURL,
+			    jsonpCallback: 'jsonCallback',
+			    contentType: "application/json",
+			    dataType: 'jsonp',
+			    success: function(json) {
+			       
+			       console.log(json);
+ 
+			    },
+			    error: function(e) {
+			       console.log(e.message);
+			    }
+			});
+ 
+		}
+ 
+		
+		// On Page Load
+		$(document).ready(function(){
+			loadWeather();
+		});
 		
 	</script>
 
